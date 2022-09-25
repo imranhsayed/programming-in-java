@@ -1,0 +1,1 @@
+We can not override constructor as parent and child class can never have constructor with same name(Constructor name must always be same as Class name).
