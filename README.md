@@ -1,6 +1,36 @@
 # programming-in-java
 Example programs in Java
 
+# What is ResultSet In Java?
+* ResultSet is an interface in Java that is used to get the database result in a table format. 
+* The object of ResultSet maintains a cursor pointing to a row of a table. Initially, cursor points to before the first row.
+* But we can make this object to move forward and backward direction by passing either TYPE_SCROLL_INSENSITIVE or TYPE_SCROLL_SENSITIVE in createStatement(int,int) method as well as we can make this object as updatable by:
+```java
+Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,  
+                     ResultSet.CONCUR_UPDATABLE);  
+```
+* Example
+```java
+import java.sql.*;  
+class FetchRecord{  
+public static void main(String args[])throws Exception{  
+  
+Class.forName("oracle.jdbc.driver.OracleDriver");  
+Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","oracle");  
+Statement stmt=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);  
+ResultSet rs=stmt.executeQuery("select * from emp765");  
+  
+//getting the record of 3rd row  
+rs.absolute(3);  
+System.out.println(rs.getString(1)+" "+rs.getString(2)+" "+rs.getString(3));  
+  
+con.close();  
+}}  
+```
+
+* Another example
+
+
 ```java
 /STEP 1. Import required packages
 import java.sql.*;
